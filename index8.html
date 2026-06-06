@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AREMA -на  Bootstrap</title>
+    
+    <!-- Google Fonts - Montserrat (нестандартный шрифт) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        /* Стили для Практики 8 */
+        
+        /* ========== ПОЛЬЗОВАТЕЛЬСКИЕ КЛАССЫ BOOTSTRAP ========== */
+        
+        /* 1. Карточка с hover-эффектом и тенью Bootstrap */
+        .card-hover-lift {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+        }
+        
+        /* 2. Градиентная кнопка с анимацией */
+        .btn-gradient-primary {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient-primary:hover {
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+            transform: scale(1.05);
+            color: white;
+        }
+        
+        /* 3. Заголовок с подчёркиванием */
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #FFC107;
+            border-radius: 2px;
+        }
+        
+        .heading-underline.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* 4. Секция с паттерном */
+        .section-pattern {
+            background-color: #f8f9fa;
+            background-image: radial-gradient(#dee2e6 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        /* 5. Анимированная иконка */
+        .icon-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        /* 6. Карточка с цветной границей */
+        .card-accent-border {
+            border-left: 4px solid #FFC107;
+            transition: all 0.3s ease;
+        }
+        
+        .card-accent-border:hover {
+            border-left-color: #667eea;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+        }
+        
+        /* 7. Текст с градиентом */
+        .text-gradient {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* 8. Плавающая карточка */
+        .card-floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* ========== БАЗОВЫЕ СТИЛИ ========== */
+        
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        
+        .hero-watermark {
+            position: absolute;
+            font-size: 150px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            white-space: nowrap;
+        }
+        
+        /* Навигация */
+        .hero-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-nav .logo img {
+            height: 50px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: #FFC107;
+        }
+        
+        .nav-contacts {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .phone {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: white;
+        }
+        
+        /* Hero Content */
+        .hero-content {
+            padding: 60px 0;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .hero-title {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        
+        .title-main {
+            display: block;
+            color: white;
+        }
+        
+        .title-sub {
+            display: block;
+            color: #FFC107;
+        }
+        
+        .yellow-line {
+            width: 100px;
+            height: 4px;
+            background: #FFC107;
+            margin: 20px 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-features {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0 0 20px;
+        }
+        
+        .hero-features li {
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-features i {
+            color: #2ecc71;
+            font-size: 18px;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 10%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+        
+        .scroll-line {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, #FFC107, transparent);
+            margin: 10px auto 0;
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollDown {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(10px); }
+        }
+        
+        /* Hero Badges Row */
+        .hero-badges-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+        
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .badge-partner-logo {
+            height: 30px;
+        }
+        
+        .badge-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .bg-light-gray {
+            background-color: #f8f9fa;
+        }
+        
+        .rule-block {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: block;
+        }
+        
+        .result-item {
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .result-icon {
+            font-size: 3rem;
+            color: #FFC107;
+            margin-bottom: 1rem;
+        }
+        
+        .rule-block img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Социальные иконки */
+        .social-btn {
+            min-width: 120px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .social-btn i {
+            font-size: 1.5rem;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        /*  ЗАДАНИЕ №2: АДАПТИВНЫЙ ШРИФТ  */
+        
+        /* Подключение нестандартного шрифта Montserrat */
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Адаптивный размер шрифта через медиазапросы */
+        
+        /* XS (<576px) - Мобильные */
+        @media (max-width: 575px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .hero-title {
+                font-size: 32px !important;
+            }
+            
+            .display-5 {
+                font-size: 1.8rem !important;
+            }
+            
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.4rem; }
+            h4 { font-size: 1.2rem; }
+            h5 { font-size: 1.1rem; }
+            h6 { font-size: 1rem; }
+            
+            .lead {
+                font-size: 0.95rem !important;
+            }
+            
+            .hero-watermark {
+                font-size: 40px !important;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        /* SM (576px - 767px) - Большие мобильные */
+        @media (min-width: 576px) and (max-width: 767px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .hero-title {
+                font-size: 40px !important;
+            }
+            
+            .display-5 {
+                font-size: 2rem !important;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.5rem; }
+            h4 { font-size: 1.3rem; }
+            h5 { font-size: 1.2rem; }
+            h6 { font-size: 1.1rem; }
+            
+            .lead {
+                font-size: 1rem !important;
+            }
+            
+            .hero-watermark {
+                font-size: 60px !important;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        /* MD (768px - 991px) - Планшеты */
+        @media (min-width: 768px) and (max-width: 991px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .hero-title {
+                font-size: 48px !important;
+            }
+            
+            .display-5 {
+                font-size: 2.2rem !important;
+            }
+            
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.7rem; }
+            h4 { font-size: 1.4rem; }
+            h5 { font-size: 1.3rem; }
+            h6 { font-size: 1.2rem; }
+            
+            .lead {
+                font-size: 1.05rem !important;
+            }
+            
+            .hero-watermark {
+                font-size: 80px !important;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        /* LG (992px - 1199px) - Малые десктопы */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .hero-title {
+                font-size: 56px !important;
+            }
+            
+            .display-5 {
+                font-size: 2.5rem !important;
+            }
+            
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.2rem; }
+            h3 { font-size: 1.9rem; }
+            h4 { font-size: 1.5rem; }
+            h5 { font-size: 1.4rem; }
+            h6 { font-size: 1.3rem; }
+            
+            .lead {
+                font-size: 1.1rem !important;
+            }
+        }
+        
+        /* XL (≥1200px) - Полные десктопы */
+        @media (min-width: 1200px) {
+            body {
+                font-size: 18px;
+            }
+            
+            .hero-title {
+                font-size: 72px !important;
+            }
+            
+            .display-5 {
+                font-size: 3rem !important;
+            }
+            
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            h3 { font-size: 2rem; }
+            h4 { font-size: 1.6rem; }
+            h5 { font-size: 1.5rem; }
+            h6 { font-size: 1.4rem; }
+            
+            .lead {
+                font-size: 1.2rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR (Задание №2: Сетка Bootstrap) (Практика 11: Dropdown + Navbar) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="AREMA" height="40" class="d-inline-block align-text-top">
+                AREMA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Главная</a>
+                    </li>
+                    <!-- DROPDOWN (Практика 11: Компонент 1) -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" role="button">Услуги</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#portfolio">Ремонт квартир</a></li>
+                            <li><a class="dropdown-item" href="#turnkey">Ремонт ванн</a></li>
+                            <li><a class="dropdown-item" href="#turnkey">Дизайн интерьеров</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#contact">Заказать консультацию</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Портфолио</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#workflow">Схема работы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Команда</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacts">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Задание №2: Фиксированная сетка) -->
+    <section id="hero" class="hero-section">
+        <!-- Фон -->
+        <div class="hero-bg">
+            <img src="images/couple.jpg" alt="Счастливая пара">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <!-- Большая надпись AREMA -->
+        <div class="hero-watermark">AREMA</div>
+        
+        <div class="container position-relative" style="z-index: 1;">
+            <!-- Верхнее меню -->
+             <!--4 задание-->>
+            <nav class="hero-nav d-flex justify-content-between align-items-center">
+                <a href="#hero" class="logo">
+                    <img src="images/logo.png" alt="AREMA">
+                </a>
+                <ul class="nav-menu d-none d-md-flex">
+                    <li><a href="#portfolio">Ремонт квартир</a></li>
+                    <li><a href="#consultation">Ремонт ванн</a></li>
+                    <li><a href="#turnkey">Дизайн интерьеров</a></li>
+                    <li><a href="#testimonials">Блог</a></li>
+                </ul>
+                <div class="nav-contacts d-flex align-items-center gap-3">
+                    <a href="tel:+74994507786" class="phone">+7 (499) 450 77 86</a>
+                    <button class="btn btn-gradient-primary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
+                        </svg>
+                        Заказать звонок
+                    </button>
+                </div>
+                <button class="hamburger d-md-none">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+            
+            <!-- Hero Content -->
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1 class="hero-title text-start">
+                            <span class="title-main">ХОРОШИЙ РЕМОНТ</span>
+                            <span class="title-sub">с гарантией</span>
+                        </h1>
+                        <div class="yellow-line"></div>
+                        <p class="hero-subtitle lead text-uppercase text-start">ФИНАНСОВАЯ ОТВЕТСТВЕННОСТЬ<br>ЗА КАЧЕСТВО И СРОКИ</p>
+
+                        <div class="hero-action-row d-flex align-items-center gap-4 justify-content-start">
+                            <a href="#" class="btn btn-gradient-primary btn-lg rounded-pill icon-pulse">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                                Заказать оценку
+                            </a>
+                            <ul class="hero-features list-unstyled">
+                                <li><i class="bi bi-check-circle-fill"></i> в команде только специалисты</li>
+                                <li><i class="bi bi-check-circle-fill"></i> оплата за результат</li>
+                                <li><i class="bi bi-check-circle-fill"></i> гарантия 36 месяцев</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator & Awards -->
+            <div class="row mt-auto">
+                <div class="col-12">
+                    <div class="hero-badges-row d-flex justify-content-center align-items-center gap-4">
+                        <div class="badge-item d-flex align-items-center gap-3">
+                            <img src="images/__.png" alt="Награда" class="badge-icon">
+                            <span class="lead">Лучшая строительная компания России</span>
+                        </div>
+                        <div class="badge-divider d-none d-md-block"></div>
+                        <div class="badge-item d-flex align-items-center gap-3">
+                            <img src="images/tinkoff.png" alt="Tinkoff" class="badge-partner-logo">
+                            <span class="lead">Партнер Тинькофф Банка</span>
+                        </div>
+                    </div>
+                    <div class="scroll-indicator text-center">
+                        <span>SCROLL</span>
+                        <div class="scroll-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RULES SECTION (Задание №2: 3 колонки в ряд) -->
+    <section id="rules" class="section-padding section-pattern">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold heading-underline center">Правила создания хорошего ремонта</h2>
+                    <p class="lead text-muted">Мы гарантируем качество на каждом этапе</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- КОЛОНКА 01 -->
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img src="images/worker-1.jpg" alt="Рабочий" class="img-fluid mb-4 rounded card-floating img-zoomable" style="max-height: 300px;">
+                        <h3 class="fw-bold mb-3">Сначала проверка - потом оплата и никак иначе</h3>
+                        <div class="lead text-start">
+                            <p class="text-muted">Мы не берем предоплату за работы.</p>
+                            <p class="text-muted">Вы расплачиваетесь поэтапно, только после личной проверки работ на объектах.</p>
+                            <p class="text-muted">Это помогает нам повышать качество работ на каждом этапе.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- КОЛОНКА 02 -->
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img src="images/worker-2.jpg" alt="Специалист" class="img-fluid mb-4 rounded card-floating img-zoomable" style="max-height: 300px;">
+                        <h3 class="fw-bold mb-3">Качество будет проверено трижды</h3>
+                        <div class="lead text-start">
+                            <p class="text-muted">Инженер от 2 раз в неделю проводит оценку качества работ мастеров.</p>
+                            <p class="text-muted">Технический надзор проверяет качество работ на объектах за инженером.</p>
+                            <p class="text-muted">Служба контроля качества связывается с Вами лично и передает информацию руководству.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- КОЛОНКА 03 -->
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img src="images/worker-3.jpg" alt="Специалист" class="img-fluid mb-4 rounded card-floating img-zoomable" style="max-height: 300px;">
+                        <h3 class="fw-bold mb-3">Сотрудники отбираются 1 раз и надолго</h3>
+                        <div class="lead text-start">
+                            <p class="text-muted">Инженер, прикрепленный к вашему объекту проходит в нашу команду только при условии реализации минимум 200 объектов в роли прораба.</p>
+                            <p class="text-muted">Минимальный стаж мастеров - 7 лет.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULT SECTION (Задание №2: Сетка 3 колонки) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold heading-underline center">Главное результат</h2>
+                    <p class="lead text-muted">Предлагаем оценивать его, а не старания</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="result-item text-center h-100 d-flex flex-column justify-content-center card-hover-lift card-accent-border">
+                        <div class="result-icon icon-pulse">
+                            <i class="bi bi-volume-mute-fill"></i>
+                        </div>
+                        <h4 class="fw-bold">Не нарушаем закон тишины</h4>
+                        <p class="lead text-muted">Выполняем шумные работы только с 9:00 до 13:00 и с 15:00 до 19:00. Вы застрахованы от жалоб соседей и проблем с контролирующими органами.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="result-item text-center h-100 d-flex flex-column justify-content-center card-hover-lift card-accent-border">
+                        <div class="result-icon icon-pulse">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="fw-bold">Гарантия 36 месяцев</h4>
+                        <p class="lead text-muted">Даем полное постгарантийное обслуживание на 3 года вперед.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="result-item text-center h-100 d-flex flex-column justify-content-center card-hover-lift card-accent-border">
+                        <div class="result-icon icon-pulse">
+                            <i class="bi bi-key-fill"></i>
+                        </div>
+                        <h4 class="fw-bold">Реальный ремонт под ключ</h4>
+                        <p class="lead text-muted">Мы с Вами от демонтажа до уборки. Любые чистовые и черновые материалы. Монтаж окон и дверей, в общем все, чтобы ремонт прошел максимально комфортно.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION (Задание №2: Адаптивная сетка 2 колонки) (Практика 11: Breadcrumb + Nav-tabs + Pagination + Thumbnails) -->
+    <section id="portfolio" class="section-padding">
+        <div class="container">
+            <!-- BREADCRUMB (Практика 11: Компонент 5) -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#hero">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="#portfolio">Наши работы</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Портфолио</li>
+                </ol>
+            </nav>
+            
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold">Уже 810 сданных объектов</h2>
+                    <p class="lead text-muted">Готовы предоставить отзыв от каждого клиента</p>
+                </div>
+            </div>
+            
+            <!-- CAROUSEL (Задание №3: Подписи к слайдам) -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#portfolioCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Слайд 1"></button>
+                            <button type="button" data-bs-target="#portfolioCarousel" data-bs-slide-to="1" aria-label="Слайд 2"></button>
+                            <button type="button" data-bs-target="#portfolioCarousel" data-bs-slide-to="2" aria-label="Слайд 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <!-- Слайд 1 -->
+                            <div class="carousel-item active">
+                                <img src="images/img-2.png" class="d-block w-100" alt="Ремонт 2-комнатной квартиры" style="height: 500px; object-fit: cover;">
+                                <!-- CAROUSEL CAPTION (Задание №3) -->
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Ремонт 2-комнатной квартиры</h5>
+                                    <p>ЖК "Сердце Столицы" — современный дизайн и качественные материалы</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Слайд 2 -->
+                            <div class="carousel-item">
+                                <img src="images/img-3.png" class="d-block w-100" alt="Ремонт 1-комнатной квартиры" style="height: 500px; object-fit: cover;">
+                                <!-- CAROUSEL CAPTION (Задание №3) -->
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Ремонт 1-комнатной квартиры 38 м²</h5>
+                                    <p>Москва, Проспект Андропова — компактно и функционально за 416 000 руб.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Слайд 3 -->
+                            <div class="carousel-item">
+                                <img src="images/img-5.png" class="d-block w-100" alt="Ремонт 3-комнатной квартиры" style="height: 500px; object-fit: cover;">
+                                <!-- CAROUSEL CAPTION (Задание №3) -->
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Ремонт 3-комнатной квартиры</h5>
+                                    <p>ЖК "Дом на Мосфильмовской" — премиум класс с панорамным видом</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Предыдущий</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Следующий</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NAV-TABS (Практика 11: Компонент 3) -->
+            <ul class="nav nav-tabs justify-content-center mb-5" id="portfolioTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all">Все проекты</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#apartments">Квартиры</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bathrooms">Ванные</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#design">Дизайн</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="portfolioTabsContent">
+                <div class="tab-pane fade show active" id="all">
+                    <!-- РЯД 1: Проект 1 (слева большая) + Проект 2 (справа маленькая) -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-8">
+                            <!-- THUMBNAILS (Практика 11: Компонент 7) -->
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-2.png" alt="Ремонт 2-комнатной квартиры - ЖК Сердце Столицы" class="card-img-top img-zoomable">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ремонт 2-комнатной квартиры</h5>
+                                    <p class="card-text text-muted">ЖК "Сердце Столицы"</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-3.png" alt="Ремонт 1 комнатной квартиры 38 м²" class="card-img-top img-zoomable">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">Ремонт 1 комнатной квартиры — 38 м²</h5>
+                                    <p class="card-text text-muted small">Москва, Проспект Андропова, 42к1</p>
+                                    <p class="card-text fw-bold text-warning fs-5">416 000 руб.</p>
+                                    <button class="btn btn-gradient-primary btn-lg w-100 rounded-pill">Посмотреть проект</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- РЯД 2: Проект 4 (слева маленькая) + Проект 3 (справа большая) -->
+                    <div class="row g-4">
+                        <div class="col-lg-4">
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-4.png" alt="Ремонт 1 комнатной квартиры 56 м²" class="card-img-top img-zoomable">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">Ремонт 1 комнатной квартиры — 56 м²</h5>
+                                    <p class="card-text text-muted small">Москва, ул. Новогиреевская, д. 51, к. 1</p>
+                                    <p class="card-text fw-bold text-warning fs-5">350 800 руб.</p>
+                                    <button class="btn btn-gradient-primary btn-lg w-100 rounded-pill">Посмотреть проект</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-8">
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-5.png" alt="Ремонт 3-комнатной квартиры - ЖК Дом на Мосфильмовской" class="card-img-top img-zoomable">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ремонт 3-комнатной квартиры</h5>
+                                    <p class="card-text text-muted">ЖК "Дом на Мосфильмовской"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="apartments">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-2.png" alt="Квартира 1" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ремонт 2-комнатной квартиры</h5>
+                                    <p class="card-text text-muted">ЖК "Сердце Столицы"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-3.png" alt="Квартира 2" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ремонт 1 комнатной квартиры — 38 м²</h5>
+                                    <p class="card-text fw-bold text-warning">416 000 руб.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="bathrooms">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-4.png" alt="Ванная 1" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ремонт ванной комнаты</h5>
+                                    <p class="card-text text-muted">ЖК "Сердце Столицы"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="design">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card h-100 card-hover-lift thumbnail-card">
+                                <img src="images/img-5.png" alt="Дизайн 1" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">Дизайн-проект 3-комнатной</h5>
+                                    <p class="card-text text-muted">ЖК "Дом на Мосфильмовской"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PAGINATION (Практика 11: Компонент 6) -->
+            <nav aria-label="Portfolio pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#"><i class="bi bi-chevron-double-left"></i></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"><i class="bi bi-chevron-double-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!--1 задание-->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <!-- Кнопка видима на XS, SM, LG, XL (скрыта только на MD) -->
+                    <button class="btn btn-warning btn-lg px-5 rounded-pill d-block d-md-none d-lg-block">Показать еще</button>
+                    <button class="btn btn-warning btn-sm px-4 rounded-pill d-md-block d-lg-none">Ещё</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW SECTION (Задание №2: Сетка Bootstrap) -->
+    <section id="workflow" class="section-padding section-pattern">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold heading-underline center">Схема работы</h2>
+                    <p class="lead text-muted">которая позволяет нам выдерживать сроки и обеспечивать качество</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="display-4 text-primary mb-3 icon-pulse">
+                                <i class="bi bi-chat-dots-fill"></i>
+                            </div>
+                            <h5 class="card-title">Шаг 1</h5>
+                            <p class="card-text lead">Отвечаем на ваш вопрос: Как быстро и за какую сумму мы сделаем ремонт?</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="display-4 text-primary mb-3 icon-pulse">
+                                <i class="bi bi-file-earmark-text-fill"></i>
+                            </div>
+                            <h5 class="card-title">Шаг 2</h5>
+                            <p class="card-text lead">Составляем смету и заключаем договор</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="display-4 text-primary mb-3 icon-pulse">
+                                <i class="bi bi-hammer"></i>
+                            </div>
+                            <h5 class="card-title">Шаг 3</h5>
+                            <p class="card-text lead">Выполняем демонтажные работы</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="display-4 text-primary mb-3 icon-pulse">
+                                <i class="bi bi-bricks"></i>
+                            </div>
+                            <h5 class="card-title">Шаг 4</h5>
+                            <p class="card-text lead">Черновые работы</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="display-4 text-primary mb-3 icon-pulse">
+                                <i class="bi bi-palette-fill"></i>
+                            </div>
+                            <h5 class="card-title">Шаг 5</h5>
+                            <p class="card-text lead">Чистовые работы</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="display-4 text-primary mb-3 icon-pulse">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <h5 class="card-title">Шаг 6</h5>
+                            <p class="card-text lead">Сдача объекта и уборка</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADVANTAGES SECTION (Задание №2: Сетка 3 колонки) -->
+    <section class="section-padding section-pattern">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold heading-underline center">Преимущества</h2>
+                    <p class="lead text-muted">Почему клиенты выбирают нас</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="feature-icon icon-pulse">
+                                <i class="bi bi-cart-fill"></i>
+                            </div>
+                            <h4 class="fw-bold">Материал по оптовым ценам</h4>
+                            <p class="lead text-muted">С нами до 30% выгоднее покупать черновые и чистовые материалы, сантехнику, электрику, двери и окна</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="feature-icon icon-pulse">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <h4 class="fw-bold">Рассрочка без переплат</h4>
+                            <p class="lead text-muted">Закажите ремонт, даже если не хотите платить сразу. Ваши проценты берем на себя</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 text-center card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <div class="feature-icon icon-pulse">
+                                <i class="bi bi-file-earmark-check"></i>
+                            </div>
+                            <h4 class="fw-bold">Смета без скрытых работ</h4>
+                            <p class="lead text-muted">Смета вырастет только в случае, если вы сами измените набор работ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSULTATION FORM SECTION (Задание №2: Сетка 2 колонки) -->
+    <section id="contact" class="section-padding section-pattern">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="display-5 fw-bold mb-4 text-start heading-underline">Бесплатная консультация по вопросам ремонта</h2>
+                    
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="bi bi-calendar-check fs-3 text-primary me-3 icon-pulse"></i>
+                        <div>
+                            <h5 class="fw-bold">Работаем без выходных</h5>
+                            <p class="lead mb-0 text-muted">приедем тогда, когда удобно Вам</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="bi bi-people-fill fs-3 text-primary me-3 icon-pulse"></i>
+                        <div>
+                            <h5 class="fw-bold">Индивидуальная консультация</h5>
+                            <p class="lead mb-0 text-muted">от инженера и дизайнера</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start">
+                        <i class="bi bi-calculator fs-3 text-primary me-3 icon-pulse"></i>
+                        <div>
+                            <h5 class="fw-bold">Смета без скрытых платежей</h5>
+                            <p class="lead mb-0 text-muted">считаем только то, что нужно Вам</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card p-4 shadow card-hover-lift card-accent-border">
+                        <h4 class="mb-4 text-start">Выберите тип услуги:</h4>
+                        <form>
+                            <div class="mb-3">
+                                <label for="service-type" class="form-label">Тип услуги</label>
+                                <input type="text" class="form-control form-control-lg" id="service-type" placeholder="Начните вводить название услуги...">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="consult-name" class="form-label">Ваше имя</label>
+                                <input type="text" class="form-control form-control-lg" id="consult-name" placeholder="Введите ваше имя" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="consult-phone" class="form-label">Телефон</label>
+                                <input type="tel" class="form-control form-control-lg" id="consult-phone" placeholder="+7 (___) ___-__-__" required>
+                            </div>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="privacy" required checked>
+                                <label class="form-check-label lead" for="privacy">
+                                    Согласен с <a href="#">политикой конфиденциальности</a>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-gradient-primary btn-lg w-100">
+                                <i class="bi bi-send me-2"></i>Записаться
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION (Задание №2: Сетка 2 колонки) -->
+    <section id="team" class="section-padding">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold heading-underline center">Наша команда</h2>
+                    <p class="lead text-muted">На время работы наша команда станет вашей</p>
+                </div>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-2 order-md-1 mb-4 mb-lg-0">
+                    <img src="images/Сергей.png" alt="Сергей Буйняков" class="img-fluid rounded shadow card-floating">
+                </div>
+                
+                <div class="col-lg-6 order-1 order-md-2">
+                    <h3 class="fw-bold mb-3 text-start text-gradient">Сергей Буйняков</h3>
+                    <p class="lead text-primary mb-4">Лучший инженер-сметчик</p>
+                    
+                    <div class="mb-3">
+                        <strong>Стаж:</strong> 6 лет
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Достижения:</strong> Сократил срок проведения ремонта на своем участке на 20%
+                    </div>
+                    
+                    <div class="mb-4">
+                        <strong>Награды:</strong> Лучший инженер-сметчик 2019 года
+                    </div>
+                    
+                    <p class="lead text-muted">Посчитал более 500 смет и заключил около 200 договоров. Имеет высшее инженерное образование в институте МГСУ. В работе добросовестный и внимательный.</p>
+                    
+                    <button class="btn btn-gradient-primary btn-lg">
+                        <i class="bi bi-person-plus me-2"></i>Заказать консультацию
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (Задание №2: Сетка 3 колонки) -->
+    <section id="about" class="section-padding section-pattern">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold heading-underline center">О нас</h2>
+                    <p class="lead text-muted">Узнайте больше о нашей компании</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card h-100 card-hover-lift card-accent-border">
+                        <div class="card-body">
+                            <span class="display-4 text-warning mb-3 d-block icon-pulse">01</span>
+                            <h4 class="card-title text-start">Миссия компании</h4>
+                            <p class="card-text text-muted lead">— зачем мы существуем</p>
+                            <p class="text-start">Мы хотим своим примером доказать, что грамотная кадровая политика, настоящий менеджмент и автоматизированная система управления позволяют выполнить ремонт точно в соответствии с договоренностями по срокам и качеству.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card h-100 card-hover-lift card-accent-border">
+                        <div class="card-body">
+                            <span class="display-4 text-warning mb-3 d-block icon-pulse">02</span>
+                            <h4 class="card-title text-start">Ценности персонала</h4>
+                            <p class="card-text text-muted lead">— почему мы такие</p>
+                            <p class="text-start">Мы хотим своим примером доказать, что грамотная кадровая политика, настоящий менеджмент и автоматизированная система управления позволяют выполнить ремонт точно в соответствии с договоренностями по срокам и качеству.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card h-100 card-hover-lift card-accent-border">
+                        <div class="card-body">
+                            <span class="display-4 text-warning mb-3 d-block icon-pulse">03</span>
+                            <h4 class="card-title text-start">Приоритеты компании</h4>
+                            <p class="card-text text-muted lead">— что для нас важно</p>
+                            <p class="text-start">Мы хотим своим примером доказать, что грамотная кадровая политика, настоящий менеджмент и автоматизированная система управления позволяют выполнить ремонт точно в соответствии с договоренностями по срокам и качеству.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION (Задание №2: Сетка Bootstrap) -->
+    <section id="testimonials" class="section-padding section-pattern">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold heading-underline center">Отзывы о нашей работе</h2>
+                    <p class="lead text-muted">Что говорят клиенты</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card p-4 card-hover-lift card-floating">
+                        <div class="text-center">
+                            <img src="images/video-1.png" alt="Отзыв клиента" class="img-fluid rounded mb-4 img-zoomable" style="max-height: 400px;">
+                            <blockquote class="blockquote">
+                                <p class="mb-3 lead text-gradient">"Отличная работа! Ремонт выполнен в срок и с высоким качеством."</p>
+                                <footer class="blockquote-footer">Очаровательная Ольга Владимировна</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title fw-bold">Акция "Расскажи друг"</h5>
+                            <p class="card-text lead text-muted">Предложите другу заказать ремонт в компании "Арема" и получите <strong>5000 рублей</strong>, а друг получит <strong>скидку 5%</strong></p>
+                            <button class="btn btn-gradient-primary btn-sm mt-3">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title fw-bold">Акция "Честно об 'Ареме'"</h5>
+                            <p class="card-text lead text-muted">Оставьте честный отзыв о работе нашей компании и получите <strong>скидку 5%</strong></p>
+                            <button class="btn btn-gradient-primary btn-sm mt-3">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 card-hover-lift card-accent-border">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title fw-bold">Акция "Вот это ремонт!"</h5>
+                            <p class="card-text lead text-muted">Пригласи нас сделать фотосессию своей квартиры после ремонта и получите <strong>2000 рублей</strong></p>
+                            <button class="btn btn-gradient-primary btn-sm mt-3">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION (Задание №2: Сетка 3 колонки) (Практика 11: Progress) -->
+    <section class="section-padding bg-light-gray">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold">Наши достижения</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4 text-center">
+                <div class="col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="bi bi-trophy-fill fs-1 text-warning mb-3"></i>
+                            <h5>Лучший клиентский сервис</h5>
+                            <p class="mb-0">Houzz 2019 по направлению дизайн интерьера</p>
+                            <!-- PROGRESS (Практика 11: Компонент 8) -->
+                            <div class="progress mt-3" style="height: 10px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">Рейтинг: 95%</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card h-100 bg-warning text-dark">
+                        <div class="card-body">
+                            <i class="bi bi-award-fill fs-1 mb-3"></i>
+                            <h5>Лучшая строительная компания России</h5>
+                            <p class="mb-0">по Версии Биржи Профессионалов Петровича</p>
+                            <!-- PROGRESS (Практика 11: Компонент 8) -->
+                            <div class="progress mt-3" style="height: 10px;">
+                                <div class="progress-bar bg-dark" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small>Рейтинг: 100%</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i class="bi bi-star-fill fs-1 text-warning mb-3"></i>
+                            <h5>ТОП-10 строительных компаний Москвы</h5>
+                            <p class="mb-0">по версии Yell</p>
+                            <!-- PROGRESS (Практика 11: Компонент 8) -->
+                            <div class="progress mt-3" style="height: 10px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">Рейтинг: 90%</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Общий прогресс выполнения проектов -->
+            <div class="row mt-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <h5 class="text-center mb-4">Статистика выполнения проектов</h5>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label>Завершённые проекты</label>
+                            <span>810 из 850</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label>В процессе</label>
+                            <span>35 из 40</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100">87%</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label>Удовлетворённость клиентов</label>
+                            <span>4.9 из 5</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 98%" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">98%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIRECTOR SECTION (Задание №2: Сетка 2 колонки) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="display-5 fw-bold mb-4">Письмо директору</h2>
+                    <p class="lead mb-4">
+                        Спорная ситуация с сотрудником?<br>
+                        Напишите напрямую руководству.<br>
+                        Ответ в день обращения
+                    </p>
+                    <button class="btn btn-warning btn-lg">
+                        <i class="bi bi-envelope me-2"></i>Написать письмо
+                    </button>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+                    <img src="images/Fillip.png" alt="Генеральный директор Беляков Филипп" class="img-fluid img-zoomable" style="max-height: 400px;">
+                    <p class="mt-3 fw-bold">Генеральный директор "Арема",<br>Беляков Филипп</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TURNKEY SECTION (Задание №2: Сетка 3x2 колонки) (Практика 11: Btn-Group) -->
+    <section id="turnkey" class="section-padding bg-light-gray">
+        <div class="container">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold">Ремонт под ключ</h2>
+                    <p class="lead text-muted">Что это значит?</p>
+                </div>
+            </div>
+            
+            <!-- BTN-GROUP (Практика 11: Компонент 2) -->
+            <div class="d-flex justify-content-center mb-5">
+                <div class="btn-group" role="group" aria-label="Фильтр категорий">
+                    <input type="radio" class="btn-check" name="filter" id="filter1" autocomplete="off" checked>
+                    <label class="btn btn-primary" for="filter1">Все</label>
+                    
+                    <input type="radio" class="btn-check" name="filter" id="filter2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="filter2">Материалы</label>
+                    
+                    <input type="radio" class="btn-check" name="filter" id="filter3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="filter3">Работы</label>
+                    
+                    <input type="radio" class="btn-check" name="filter" id="filter4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="filter4">Сантехника</label>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 thumbnail-card">
+                        <img src="images/dver.png" alt="Двери" class="card-img-top img-zoomable">
+                        <div class="card-body">
+                            <h5 class="card-title">Двери</h5>
+                            <span class="badge bg-warning">Скидка 13%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 thumbnail-card">
+                        <img src="images/panorokna.png" alt="Пластиковые окна" class="card-img-top img-zoomable">
+                        <div class="card-body">
+                            <h5 class="card-title">Пластиковые окна</h5>
+                            <span class="badge bg-warning">Скидка 11%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 thumbnail-card">
+                        <img src="images/Mask.png" alt="Сантехника" class="card-img-top img-zoomable">
+                        <div class="card-body">
+                            <h5 class="card-title">Сантехника</h5>
+                            <span class="badge bg-warning">Скидка 10%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 thumbnail-card">
+                        <img src="images/Group.png" alt="Напольные покрытия" class="card-img-top img-zoomable">
+                        <div class="card-body">
+                            <h5 class="card-title">Напольные покрытия</h5>
+                            <span class="badge bg-warning">Скидка 8%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 thumbnail-card">
+                        <img src="images/Group.png" alt="Чистовые материалы" class="card-img-top img-zoomable">
+                        <div class="card-body">
+                            <h5 class="card-title">Чистовые материалы</h5>
+                            <span class="badge bg-warning">Скидка 13%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 thumbnail-card">
+                        <img src="images/MaskGroup.png" alt="Черновые материалы" class="card-img-top img-zoomable">
+                        <div class="card-body">
+                            <h5 class="card-title">Черновые материалы</h5>
+                            <span class="badge bg-warning">Скидка 15%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS SECTION (Задание №2: Сетка 4x2 колонки) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold">Оптовые цены от лучших производителей</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4 text-center">
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/1.png" alt="Knauf" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Строительные материалы</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/Barlinek.png" alt="Barlinek" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Паркетная доска</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/Bravo.png" alt="Bravo" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Двери, фурнитура</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/Italon.png" alt="Italon" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Керамические изделия</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/kerama.png" alt="Kerama Marazzi" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Плитка</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/Egger.png" alt="Egger" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Строительные материалы</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/kronotex.png" alt="Kronotex" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Ламинат</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <img src="images/tarkett.png" alt="Tarkett" class="img-fluid mb-2" style="max-height: 60px;">
+                            <p class="small mb-0">Плитка, линолеум</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION (Задание №2: Accordion) -->
+    <section class="section-padding bg-light-gray">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold">Вопросы и ответы</h2>
+                    <p class="lead text-muted">Отвечают специалисты</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Как узнать цену ремонта по телефону?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Мы не называем точную стоимость по телефону, так как это было бы нечестно. Каждый ремонт индивидуален. Мы можем назвать лишь примерный диапазон ("от..."), но точная смета составляется только после выезда инженера на замеры.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Может ли цена измениться в процессе ремонта?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Нет. Так называемые скрытые платежи — это обман. Более того, после того как мы составили смету, то фиксируем сумму на 60 дней. Изменения возможны только в случае вашего желания произвести дополнительные работы или использовать другие материалы.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Кто и как мне гарантирует качество?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Гарантию обеспечивает инженер технического надзора. Он посещает объект по графику и фиксирует нарушения. Также вы платите поэтапно — только после принятия работ.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS SECTION (Задание №2: Сетка 2 колонки) -->
+    <section id="contacts" class="section-padding">
+        <div class="container">
+            <!-- BREADCRUMB (Практика 11: Компонент 5) -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#hero">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="#portfolio">Портфолио</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+                </ol>
+            </nav>
+            
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold">Мы всегда на связи</h2>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Адрес главного офиса:</h4>
+                            <p>Москва, Проспект мира, дом 101с1<br>
+                            (5 минут от метро Алексеевская)<br>
+                            Ежедневно с 9:00 до 21:00</p>
+                            
+                            <h4 class="card-title mt-4 mb-3">Контактный телефон:</h4>
+                            <p><a href="tel:+74995214249" class="text-decoration-none"><strong>+7 (499) 521-42-49</strong></a></p>
+                            
+                            <h4 class="card-title mt-4 mb-3">Почта:</h4>
+                            <p>Гарантийное обслуживание<br>
+                            <a href="mailto:support@arema-group.ru">support@arema-group.ru</a><br>
+                            Любые другие вопросы<br>
+                            <a href="mailto:info@arema-group.ru">info@arema-group.ru</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Наши социальные сети:</h4>
+                            <!-- BTN-GROUP VERTICAL (Практика 11: Компонент 2) -->
+                            <div class="btn-group-vertical w-100" role="group" aria-label="Социальные сети">
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="bi bi-yandex me-2"></i> Яндекс
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="bi bi-telegram me-2"></i> Telegram
+                                </a>
+                                <a href="#" class="btn btn-outline-success">
+                                    <i class="bi bi-whatsapp me-2"></i> WhatsApp
+                                </a>
+                                <a href="#" class="btn btn-outline-info">
+                                    <i class="bi bi-vk me-2"></i> ВКонтакте
+                                </a>
+                                <a href="#" class="btn btn-outline-danger">
+                                    <i class="bi bi-instagram me-2"></i> Instagram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Задание №2: Сетка 3 колонки) -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-4">
+                        <i class="bi bi-house-door-fill me-2"></i>AREMA
+                    </h5>
+                    <p>Профессиональный ремонт квартир в Москве и МО</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-telegram fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-whatsapp fs-4"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Контакты</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="bi bi-geo-alt me-2"></i>
+                            Москва, Проспект мира, дом 101с1
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone me-2"></i>
+                            <a href="tel:+74995214249" class="text-white text-decoration-none">+7 (499) 521-42-49</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-envelope me-2"></i>
+                            <a href="mailto:info@arema-group.ru" class="text-white text-decoration-none">info@arema-group.ru</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-clock me-2"></i>
+                            Ежедневно с 9:00 до 21:00
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Навигация</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#hero" class="text-white text-decoration-none">Главная</a></li>
+                        <li class="mb-2"><a href="#rules" class="text-white text-decoration-none">Правила</a></li>
+                        <li class="mb-2"><a href="#portfolio" class="text-white text-decoration-none">Портфолио</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 AREMA. Все права защищены.</p>
+                    <p class="mb-0"><small>ИНН 7716912681 ОГРН 1187746496233</small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- LIGHTBOX SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаём модальное окно
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox-modal';
+            lightbox.innerHTML = `
+                <span class="lightbox-close">&times;</span>
+                <div class="lightbox-content">
+                    <img src="" alt="Увеличенное изображение">
+                    <div class="lightbox-caption"></div>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+            
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+            const lightboxClose = lightbox.querySelector('.lightbox-close');
+            
+            // Находим все изображения с классом img-zoomable
+            const zoomableImages = document.querySelectorAll('.img-zoomable');
+            
+            zoomableImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    const src = this.src;
+                    const alt = this.alt || '';
+                    lightboxImg.src = src;
+                    lightboxCaption.textContent = alt;
+                    lightbox.classList.add('active');
+                });
+            });
+            
+            // Закрытие по крестику
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+            
+            // Закрытие по клику вне изображения
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            
+            // Закрытие по Esc
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
