@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AREMA - Будьте в курсе - Практика 9</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="docher8.css">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- NAVBAR (Bootstrap) -->
+    <nav class="navbar navbar-dark fixed-top">
+        <div class="container-fluid">
+            <!-- Логотип (слева) -->
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="AREMA" height="50">
+            </a>
+            
+            <!-- Правая часть: телефон, кнопка, гамбургер -->
+            <div class="d-flex align-items-center d-lg-none">
+                <!-- Телефон и кнопка для MD -->
+                <div class="d-flex flex-column align-items-end me-3 d-none d-md-flex d-lg-none">
+                    <a href="tel:+74994507786" class="text-white text-decoration-none" style="font-size: 14px;">
+                        +7 (499) 450 77 86
+                    </a>
+                    <button class="btn btn-warning btn-call btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#callModal">
+                        <i class="bi bi-telephone-fill me-1"></i>Заказать звонок
+                    </button>
+                </div>
+                
+                <!-- Гамбургер -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: none;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
+            <!-- Десктопное меню (видимо только на ≥992px) -->
+            <div class="d-none d-lg-flex align-items-center w-100 justify-content-between">
+                <div class="d-flex align-items-center me-4">
+                    <a class="navbar-link-desktop me-3" href="#">Ремонт квартир</a>
+                    <a class="navbar-link-desktop me-3" href="#">Ремонт ванн</a>
+                    <a class="navbar-link-desktop me-3" href="#">Дизайн интерьеров</a>
+                    <a class="navbar-link-desktop active" href="#">Блог</a>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="tel:+74994507786" class="text-white text-decoration-none fw-bold">
+                        +7 (499) 450 77 86
+                    </a>
+                    <button class="btn btn-warning btn-call" data-bs-toggle="modal" data-bs-target="#callModal">
+                        <i class="bi bi-telephone-fill me-1"></i>Заказать звонок
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Мобильное меню -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="d-flex flex-column mt-3">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ремонт квартир</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ремонт ванн</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Дизайн интерьеров</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Блог</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- NEWSLETTER SECTION -->
+    <section class="newsletter-section">
+        <div class="newsletter-bg">
+            <img src="images/Дочер.jpg" alt="Фон">
+            <div class="newsletter-overlay"></div>
+        </div>
+        <div class="container position-relative" style="z-index: 3;">
+            <div class="newsletter-content">
+                <h1 class="newsletter-title">
+                    <span class="title-accent">БУДЬТЕ В КУРСЕ</span>
+                    <span class="title-white">актуальных новостей</span>
+                </h1>
+                <p class="newsletter-subtitle">в мире ремонта и дизайна</p>
+                <div class="newsletter-divider">
+                    <span class="divider-dot"></span>
+                </div>
+                <p class="newsletter-text">ПОДПИШИТЕСЬ НА НАШУ РАССЫЛКУ И ПОЛУЧИТЕ<br>БОНУС: СКИДКА 20% НА ВСЕ УСЛУГИ КОМПАНИИ</p>
+                <button class="btn btn-newsletter" data-bs-toggle="modal" data-bs-target="#subscriptionModal">
+                    Быть в курсе
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTICLES SECTION -->
+    <section class="articles-section">
+        <div class="container">
+            <!-- Поиск для мобильных -->
+            <div class="d-lg-none mb-4">
+                <div class="input-group mx-3">
+                    <input type="text" class="form-control" placeholder="Поиск по статьям">
+                    <button class="btn btn-warning" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <h2 class="articles-title">Дизайн интерьера</h2>
+            <div class="articles-layout container">
+                <!-- Main Content -->
+                <div class="articles-main">
+                    <!-- Article 1 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="images/чил.png" alt="Интерьер">
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h3>
+                            <p class="article-date">Февраль 10, 2020</p>
+                            <p class="article-excerpt">Тенденции оформления жилых пространств, главенствующие последние несколько лет, уверенно сохраняют позиции...</p>
+                            <div class="article-footer">
+                                <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#articleModal1">Читать далее</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="images/чил2.png" alt="Интерьер">
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h3>
+                            <p class="article-date">Февраль 10, 2020</p>
+                            <p class="article-excerpt">Тенденции оформления жилых пространств, главенствующие последние несколько лет, уверенно сохраняют позиции...</p>
+                            <div class="article-footer">
+                                <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#articleModal2">Читать далее</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="images/чил3.png" alt="Интерьер">
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h3>
+                            <p class="article-date">Февраль 10, 2020</p>
+                            <p class="article-excerpt">Тенденции оформления жилых пространств, главенствующие последние несколько лет, уверенно сохраняют позиции...</p>
+                            <div class="article-footer">
+                                <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#articleModal3">Читать далее</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="images/чил4.png" alt="Интерьер">
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h3>
+                            <p class="article-date">Февраль 10, 2020</p>
+                            <p class="article-excerpt">Тенденции оформления жилых пространств, главенствующие последние несколько лет, уверенно сохраняют позиции...</p>
+                            <div class="article-footer">
+                                <button class="btn btn-read-more" data-bs-toggle="modal" data-bs-target="#articleModal4">Читать далее</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Sidebar (скрываем на XS, показываем на остальных) -->
+                <aside class="articles-sidebar d-none d-md-block">
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Рубрики</h4>
+                        <ul class="category-list">
+                            <li class="category-item active">
+                                <span class="category-dot"></span>
+                                <a href="#">Дизайн интерьера</a>
+                            </li>
+                            <li class="category-item">
+                                <span class="category-dot"></span>
+                                <a href="#">Ремонт от а до я</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Теги</h4>
+                        <div class="tags-cloud">
+                            <a href="#" class="tag">Минимализм</a>
+                            <a href="#" class="tag">Лофт</a>
+                            <a href="#" class="tag">Поп-арт</a>
+                            <a href="#" class="tag">Скандинавия</a>
+                            <a href="#" class="tag">Классика</a>
+                            <a href="#" class="tag">Ретро</a>
+                            <a href="#" class="tag">Хай-тек</a>
+                            <a href="#" class="tag">Барокко</a>
+                        </div>
+                    </div>
+
+                    <!-- Popular Articles Widget -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Популярные статьи</h4>
+                        <div class="popular-articles">
+                            <a href="#" class="popular-item">
+                                <h5>Интерьер 2020 года</h5>
+                                <span class="popular-date">Февраль 10, 2020</span>
+                            </a>
+                            <a href="#" class="popular-item">
+                                <h5>Авторский дизайн интерьера</h5>
+                                <span class="popular-date">Февраль 7, 2020</span>
+                            </a>
+                            <a href="#" class="popular-item">
+                                <h5>Индустриальный стиль</h5>
+                                <span class="popular-date">Январь 23, 2020</span>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAROUSEL SECTION (Задание №3: Адаптивный слайдер) -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2 class="carousel-title text-center mb-5">Популярные статьи</h2>
+            <div id="articlesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#articlesCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#articlesCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#articlesCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="carousel-card">
+                                    <img src="images/чил.png" class="d-block w-100" alt="Статья 1">
+                                    <div class="carousel-caption">
+                                        <h5>Интерьер 2020 года</h5>
+                                        <p>Тенденции оформления жилых пространств</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="carousel-card">
+                                    <img src="images/чил2.png" class="d-block w-100" alt="Статья 2">
+                                    <div class="carousel-caption">
+                                        <h5>Авторский дизайн</h5>
+                                        <p>Уникальные решения для вашего дома</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="carousel-card">
+                                    <img src="images/чил3.png" class="d-block w-100" alt="Статья 3">
+                                    <div class="carousel-caption">
+                                        <h5>Индустриальный стиль</h5>
+                                        <p>Лофт в современной квартире</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="carousel-card">
+                                    <img src="images/чил4.png" class="d-block w-100" alt="Статья 4">
+                                    <div class="carousel-caption">
+                                        <h5>Скандинавский минимализм</h5>
+                                        <p>Светлые пространства и натуральные материалы</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4">
+                            <div class="col-lg-8 offset-lg-2">
+                                <div class="carousel-card">
+                                    <img src="images/Дочер.jpg" class="d-block w-100" alt="Статья 5">
+                                    <div class="carousel-caption">
+                                        <h5>Комплексный дизайн</h5>
+                                        <p>От идеи до реализации</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#articlesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Предыдущий</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#articlesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Следующий</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGINATION -->
+    <div class="pagination-wrapper">
+        <div class="container">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&larr;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                    <li class="page-item"><a class="page-link" href="#">7</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copyright">© AREMA профессиональный ремонт квартир в Москве и МО. ИНН 7716912681 ОГРН 1187746496233</p>
+                <a href="#" class="footer-policy">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Subscription (Задание №4: Модальное окно) -->
+    <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subscriptionModalLabel">Подписка на рассылку</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="subName" class="form-label">Ваше имя</label>
+                            <input type="text" class="form-control" id="subName" placeholder="Введите ваше имя">
+                        </div>
+                        <div class="mb-3">
+                            <label for="subEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="subEmail" placeholder="name@example.com">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="subPrivacy" required checked>
+                            <label class="form-check-label" for="subPrivacy">
+                                Согласен с <a href="#">политикой конфиденциальности</a>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-warning">Подписаться</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Call -->
+    <div class="modal fade" id="callModal" tabindex="-1" aria-labelledby="callModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="callModalLabel">Заказать звонок</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="callName" class="form-label">Ваше имя</label>
+                            <input type="text" class="form-control" id="callName" placeholder="Введите ваше имя">
+                        </div>
+                        <div class="mb-3">
+                            <label for="callPhone" class="form-label">Телефон</label>
+                            <input type="tel" class="form-control" id="callPhone" placeholder="+7 (___) ___-__-__">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-warning">Заказать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Article 1 -->
+    <div class="modal fade" id="articleModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/чил.png" class="img-fluid mb-4" alt="Интерьер">
+                    <p class="lead">Тенденции оформления жилых пространств в 2020 году...</p>
+                    <p>Полный текст статьи...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальные окна для остальных статей -->
+    <div class="modal fade" id="articleModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/чил2.png" class="img-fluid mb-4" alt="Интерьер">
+                    <p>Полный текст статьи 2...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="articleModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/чил3.png" class="img-fluid mb-4" alt="Интерьер">
+                    <p>Полный текст статьи 3...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="articleModal4" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Интерьер 2020 года: актуальное в дизайне квартир и домов</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/чил4.png" class="img-fluid mb-4" alt="Интерьер">
+                    <p>Полный текст статьи 4...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    // Эффект скролла для navbar
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() > 50) {
+            $('.navbar').addClass('scrolled');
+        } else {
+            $('.navbar').removeClass('scrolled');
+        }
+    });
+    </script>
+</body>
+</html>
